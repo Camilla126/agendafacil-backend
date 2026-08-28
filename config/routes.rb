@@ -17,6 +17,13 @@ Rails.application.routes.draw do
 
       get "publico/:slug", to: "publico#show"
       get "publico/:slug/horarios", to: "publico#horarios"
+      post "publico/:slug/agendamentos", to: "publico#criar_agendamento"
+
+      resources :agendamentos, only: [:index] do
+        member do
+          patch :cancelar
+        end
+      end
     end
   end
 
