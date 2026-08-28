@@ -3,6 +3,7 @@ class Profissional < ApplicationRecord
 
   has_many :servicos, dependent: :destroy
   has_many :disponibilidades, dependent: :destroy
+  has_many :agendamentos, dependent: :destroy
 
   before_validation :gerar_slug, on: :create
 

@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_28_015623) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_28_015754) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "agendamentos", force: :cascade do |t|
+    t.string "cliente_email", null: false
+    t.string "cliente_nome", null: false
+    t.string "cliente_telefone"
+    t.datetime "created_at", null: false
+    t.date "data", null: false
+    t.time "hora_fim", null: false
+    t.time "hora_inicio", null: false
+    t.bigint "profissional_id", null: false
+    t.bigint "servico_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["profissional_id", "data"], name: "index_agendamentos_on_profissional_id_and_data"
+    t.index ["profissional_id"], name: "index_agendamentos_on_profissional_id"
+    t.index ["servico_id"], name: "index_agendamentos_on_servico_id"
+  end
 
   create_table "disponibilidades", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -46,6 +63,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_28_015623) do
     t.index ["profissional_id"], name: "index_servicos_on_profissional_id"
   end
 
+  add_foreign_key "agendamentos", "profissionais"
+  add_foreign_key "agendamentos", "servicos"
   add_foreign_key "disponibilidades", "profissionais"
   add_foreign_key "servicos", "profissionais"
 end
