@@ -22,7 +22,7 @@ module Api
       rescue ActiveRecord::RecordNotFound
         render_nao_encontrado
       rescue Date::Error, TypeError
-        render json: { errors: { data: ["formato inválido, use YYYY-MM-DD"] } }, status: :unprocessable_entity
+        render json: { errors: { data: ["formato inválido, use YYYY-MM-DD"] } }, status: :unprocessable_content
       end
 
       def criar_agendamento
@@ -36,7 +36,7 @@ module Api
         if agendamento.save
           render json: agendamento, status: :created
         else
-          render json: { errors: agendamento.errors }, status: :unprocessable_entity
+          render json: { errors: agendamento.errors }, status: :unprocessable_content
         end
       rescue ActiveRecord::RecordNotFound
         render_nao_encontrado

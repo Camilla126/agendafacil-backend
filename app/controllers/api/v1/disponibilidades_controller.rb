@@ -11,7 +11,7 @@ module Api
         if disponibilidade.save
           render json: disponibilidade, status: :created
         else
-          render json: { errors: disponibilidade.errors }, status: :unprocessable_entity
+          render json: { errors: disponibilidade.errors }, status: :unprocessable_content
         end
       end
 

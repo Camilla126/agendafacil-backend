@@ -7,7 +7,7 @@ module Api
         if profissional.save
           render json: perfil(profissional), status: :created
         else
-          render json: { errors: profissional.errors }, status: :unprocessable_entity
+          render json: { errors: profissional.errors }, status: :unprocessable_content
         end
       end
 
