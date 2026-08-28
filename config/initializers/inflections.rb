@@ -14,3 +14,8 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
+
+# Pluralização em português para os nomes de domínio do projeto.
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.irregular "profissional", "profissionais"
+end
