@@ -1,13 +1,11 @@
 FactoryBot.define do
   factory :agendamento do
-    profissional { nil }
-    servico { nil }
-    cliente_nome { "MyString" }
-    cliente_email { "MyString" }
-    cliente_telefone { "MyString" }
-    data { "2026-08-27" }
-    hora_inicio { "2026-08-27 22:57:54" }
-    hora_fim { "2026-08-27 22:57:54" }
-    status { 1 }
+    profissional
+    servico { association :servico, profissional: profissional }
+    cliente_nome { "Cliente Teste" }
+    cliente_email { "cliente@example.com" }
+    data { Date.new(2026, 9, 1) }
+    hora_inicio { "09:00" }
+    status { :confirmado }
   end
 end

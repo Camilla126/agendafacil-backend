@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :profissional do
-    nome { "MyString" }
-    email { "MyString" }
-    senha_digest { "MyString" }
-    slug { "MyString" }
+    nome { Faker::Name.name }
+    sequence(:email) { |n| "profissional#{n}@example.com" }
+    senha { "segredo123" }
   end
 end
