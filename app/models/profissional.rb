@@ -1,6 +1,9 @@
 class Profissional < ApplicationRecord
   has_secure_password :senha
 
+  has_many :servicos, dependent: :destroy
+  has_many :disponibilidades, dependent: :destroy
+
   before_validation :gerar_slug, on: :create
 
   validates :nome, presence: true

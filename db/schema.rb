@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_28_015351) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_28_015623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "disponibilidades", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "dia_semana", null: false
+    t.time "hora_fim", null: false
+    t.time "hora_inicio", null: false
+    t.bigint "profissional_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profissional_id", "dia_semana"], name: "index_disponibilidades_on_profissional_id_and_dia_semana"
+    t.index ["profissional_id"], name: "index_disponibilidades_on_profissional_id"
+  end
 
   create_table "profissionais", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,4 +35,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_28_015351) do
     t.index ["email"], name: "index_profissionais_on_email", unique: true
     t.index ["slug"], name: "index_profissionais_on_slug", unique: true
   end
+
+  create_table "servicos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "duracao_minutos", null: false
+    t.string "nome", null: false
+    t.bigint "profissional_id", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "valor", precision: 10, scale: 2
+    t.index ["profissional_id"], name: "index_servicos_on_profissional_id"
+  end
+
+  add_foreign_key "disponibilidades", "profissionais"
+  add_foreign_key "servicos", "profissionais"
 end
