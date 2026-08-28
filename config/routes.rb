@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
       resources :servicos, only: [:index, :create, :update, :destroy]
       resources :disponibilidades, only: [:index, :create, :destroy]
+
+      get "publico/:slug", to: "publico#show"
+      get "publico/:slug/horarios", to: "publico#horarios"
     end
   end
 
